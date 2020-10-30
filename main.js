@@ -10,6 +10,7 @@ function main() {
     declareTiles()
     declarePositions()
     calculateMaxCard()
+    CalculateResourcePlenty()
 
     // test_a = new Position("test_a",[t1,t2,t3])
     // test_b = new Position("test_b",[t1,t2])
@@ -98,6 +99,7 @@ class Tile {
         this.mat = mat
         this.weight = getWeight(mat)
         this.dot = getDots(value)
+        //Change from 36 if 6 player sized map
         this.dotProb = this.dot/36
         this.dotWeight = this.dotProb * this.weight
         //Calculate dot/resourceRarity
@@ -110,6 +112,16 @@ function calculateMaxCard() {
         var sum = 0;
         for (x=0; x < positions[i].tiles.length; x++) {
             sum += positions[i].tiles[x].dotProb
+        }
+        positions[i].maxCardScore = sum
+    }
+}
+
+function CalculateResourcePlenty(){
+    for (i=0; i < positions.length; i++) {
+        var sum = 0;
+        for (x=0; x < positions[i].tiles.length; x++) {
+            sum += positions[i].tiles[x].dotWeight
         }
         positions[i].maxCardScore = sum
         console.log(positions[i].name + " = " + sum)
