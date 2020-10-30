@@ -7,10 +7,17 @@ function main() {
     //Functions for last 2 algorithm steps
     //Function for Displaying Results
 
+    totalWoodDots = 14
+    totalOreDots = 10
+    totalWheatDots = 12
+    totalSheepDots = 10
+    totalBrickDots = 11
+
     declareTiles()
     declarePositions()
     calculateMaxCard()
-    CalculateResourcePlenty()
+    calculateResourcePlenty()
+    calculateResourceRarity()
 
     // test_a = new Position("test_a",[t1,t2,t3])
     // test_b = new Position("test_b",[t1,t2])
@@ -58,8 +65,8 @@ function getWeight(mat) {
 //3 = Sheep
 //4/5 (Optional) = Wheat
 //6 = Desert
-function getMaterialName(m) {
-    switch (m) {
+function getMaterialName(material) {
+    switch (material) {
         case 0:
             return ("Brick")
         case 1:
@@ -74,6 +81,26 @@ function getMaterialName(m) {
             return ("Wheat")
         case 6:
             return("Desert")
+        default:
+        //Error
+    }
+}
+
+//Returns the total number of dots for a material on the board
+function getTotalDots(material) {
+    switch (material) {
+        case 0:
+            return (totalBrickDots)
+        case 1:
+            return (totalWoodDots)
+        case 2:
+            return (totalOreDots)
+        case 3:
+            return (totalSheepDots)
+        case 4:
+            return (totalWheatDots)
+        case 5:
+            return (totalWheatDots)
         default:
         //Error
     }
@@ -102,7 +129,7 @@ class Tile {
         //Change from 36 if 6 player sized map
         this.dotProb = this.dot/36
         this.dotWeight = this.dotProb * this.weight
-        //Calculate dot/resourceRarity
+        this.dotRarity = this.dot / getTotalDots(this.mat) 
     }
 }
 
@@ -114,14 +141,26 @@ function calculateMaxCard() {
             sum += positions[i].tiles[x].dotProb
         }
         positions[i].maxCardScore = sum
+        //console.log(positions[i].name + " = " + sum)
     }
 }
 
-function CalculateResourcePlenty(){
+function calculateResourcePlenty(){
     for (i=0; i < positions.length; i++) {
         var sum = 0;
         for (x=0; x < positions[i].tiles.length; x++) {
             sum += positions[i].tiles[x].dotWeight
+        }
+        positions[i].maxCardScore = sum
+        //console.log(positions[i].name + " = " + sum)
+    }
+}
+
+function calculateResourceRarity(){
+    for (i=0; i < positions.length; i++) {
+        var sum = 0;
+        for (x=0; x < positions[i].tiles.length; x++) {
+            sum += positions[i].tiles[x].dotRarity
         }
         positions[i].maxCardScore = sum
         console.log(positions[i].name + " = " + sum)
