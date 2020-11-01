@@ -18,20 +18,29 @@ function main() {
     calculateMaxCard()
     calculateResourcePlenty()
     calculateResourceRarity()
+    declareNeighbors()
+
+    displayPositions()
 
     // test_a = new Position("test_a",[t1,t2,t3])
     // test_b = new Position("test_b",[t1,t2])
     //test_a.tiles.push(t1, t2, t3)
     //test_b.tiles.push(t1, t2)
     // console.log(test_a)
-    // test_a.storeNeighborScore = test_b.storeNeighborScore
-    // console.log(test_a.storeNeighborScore)
-    // test_b.storeNeighborScore = [4,3]
-    // console.log(test_a.storeNeighborScore)
+    // test_a.storeNeighborScores = test_b.storeNeighborScores
+    // console.log(test_a.storeNeighborScores)
+    // test_b.storeNeighborScores = [4,3]
+    // console.log(test_a.storeNeighborScores)
     // console.log(test_a.tiles[0])
     // console.log(test_a.tiles[0].value)
     // console.log(getMaterialName(test_a.tiles[0].mat))
 
+}
+
+function displayPositions() {
+    for (i=0; i < positions.length; i++) {
+        console.log(positions[i])
+    }
 }
 
 //This function returns the number of dots for a number
@@ -110,13 +119,12 @@ class Position {
     constructor(name,tilesList) {
         this.name = name
         this.tiles = tilesList
-        this.storeNeighborScore = null
+        this.storeNeighborScoress = null
         this.maxCardScore =  null
         this.resourcePlentyScore = null
         this.resourceRarityScore = null
         this.neighborScore = null
         this.bestNeighborScore = null
-
     }
 }
 
@@ -151,7 +159,7 @@ function calculateResourcePlenty(){
         for (x=0; x < positions[i].tiles.length; x++) {
             sum += positions[i].tiles[x].dotWeight
         }
-        positions[i].maxCardScore = sum
+        positions[i].resourcePlentyScore = sum
         //console.log(positions[i].name + " = " + sum)
     }
 }
@@ -162,25 +170,28 @@ function calculateResourceRarity(){
         for (x=0; x < positions[i].tiles.length; x++) {
             sum += positions[i].tiles[x].dotRarity
         }
-        positions[i].maxCardScore = sum
-        console.log(positions[i].name + " = " + sum)
+        positions[i].resourceRarityScore = sum
+        //console.log(positions[i].name + " = " + sum)
     }
 }
 
 //This function creates all of the possible settlement positions
 function declarePositions() {
     positions = [
-    new Position("u_a",[t1]),
+    new Position("u_a1",[t1]),
+    new Position("u_a2",[t1]),
     new Position("u_b",[t2]),
     new Position("u_c",[t1,t2]),
     new Position("u_d",[t1,t4]),
     new Position("u_e",[t4]),
-    new Position("u_f",[t5]),
+    new Position("u_f1",[t5]),
+    new Position("u_f2",[t5]),
     new Position("u_g",[t2,t5]),
     new Position("u_h",[t1,t2,t3]),
     new Position("u_i",[t1,t3,t4]),
     new Position("u_j",[t4,t9]),
-    new Position("u_k",[t9]),
+    new Position("u_k1",[t9]),
+    new Position("u_k2",[t9]),
     new Position("u_l",[t2,t5,t6]),
     new Position("u_m",[t2,t3,t6]),
     new Position("u_n",[t3,t4,t8]),
@@ -203,12 +214,14 @@ function declarePositions() {
     new Position("l_e",[t7,t12,t13]),
     new Position("l_f",[t13,t14,t19]),
     new Position("l_g",[t14,t19]),
-    new Position("l_h",[t15]),
+    new Position("l_h1",[t15]),
+    new Position("l_h2",[t15]),
     new Position("l_i",[t11,t15,t16]),
     new Position("l_j",[t11,t12,t16]),
     new Position("l_k",[t12,t13,t18]),
     new Position("l_l",[t13,t18,t19]),
-    new Position("l_m",[t19]),
+    new Position("l_m1",[t19]),
+    new Position("l_m2",[t19]),
     new Position("l_n",[t15,t16]),
     new Position("l_o",[t12,t16,t17]),
     new Position("l_p",[t12,t17,t18]),
@@ -217,7 +230,8 @@ function declarePositions() {
     new Position("l_s",[t16,t17]),
     new Position("l_t",[t17,t18]),
     new Position("l_u",[t18]),
-    new Position("l_v",[t17])]
+    new Position("l_v1",[t17]),
+    new Position("l_v2",[t17])]
 
     // console.log(positions)
     // console.log(positions[0])
@@ -258,5 +272,60 @@ function declareTiles() {
 //This function adds settlement neighbors' scores to each position 
 function declareNeighbors() {
     //Push neighbor's scores and then apply algorithm?
-    //test_a.neighbors.push(test_b)
+    positions[0].neighbors=[positions[2].resourceRarityScore,positions[9].resourceRarityScore,positions[4].resourceRarityScore]
+    positions[1].neighbors=[positions[3].resourceRarityScore,positions[10].resourceRarityScore,positions[5].resourceRarityScore]
+    positions[2].neighbors=[positions[0].resourceRarityScore,positions[7].resourceRarityScore,positions[9].resourceRarityScore,positions[14].resourceRarityScore]
+    positions[3].neighbors=[positions[1].resourceRarityScore,positions[8].resourceRarityScore,positions[10].resourceRarityScore,positions[15].resourceRarityScore]
+    positions[4].neighbors=[positions[0].resourceRarityScore,positions[9].resourceRarityScore,positions[16].resourceRarityScore,positions[11].resourceRarityScore]
+    positions[5].neighbors=[positions[1].resourceRarityScore,positions[10].resourceRarityScore,positions[12].resourceRarityScore,positions[17].resourceRarityScore]
+    positions[6].neighbors=[positions[8].resourceRarityScore,positions[19].resourceRarityScore,positions[24].resourceRarityScore]
+    positions[7].neighbors=[positions[2].resourceRarityScore,positions[14].resourceRarityScore,positions[18].resourceRarityScore]
+    positions[8].neighbors=[positions[3].resourceRarityScore,positions[6].resourceRarityScore,positions[15].resourceRarityScore,positions[19].resourceRarityScore]
+    positions[9].neighbors=[positions[0].resourceRarityScore,positions[2].resourceRarityScore,positions[4].resourceRarityScore,positions[14].resourceRarityScore,positions[16].resourceRarityScore,positions[20].resourceRarityScore]
+    positions[10].neighbors=[positions[1].resourceRarityScore,positions[3].resourceRarityScore,positions[5].resourceRarityScore,positions[15].resourceRarityScore,positions[17].resourceRarityScore,positions[21].resourceRarityScore]
+    positions[11].neighbors=[positions[4].resourceRarityScore,positions[13].resourceRarityScore,positions[16].resourceRarityScore,positions[22].resourceRarityScore]
+    positions[12].neighbors=[positions[5].resourceRarityScore,positions[17].resourceRarityScore,positions[23].resourceRarityScore]
+    positions[13].neighbors=[positions[11].resourceRarityScore,positions[22].resourceRarityScore,positions[29].resourceRarityScore]
+    positions[14].neighbors=[positions[2].resourceRarityScore,positions[7].resourceRarityScore,positions[9].resourceRarityScore,positions[18].resourceRarityScore,positions[20].resourceRarityScore,positions[25].resourceRarityScore]
+    positions[15].neighbors=[positions[3].resourceRarityScore,positions[8].resourceRarityScore,positions[10].resourceRarityScore,positions[19].resourceRarityScore,positions[21].resourceRarityScore,positions[26].resourceRarityScore]
+    positions[16].neighbors=[positions[4].resourceRarityScore,positions[9].resourceRarityScore,positions[11].resourceRarityScore,positions[20].resourceRarityScore,positions[22].resourceRarityScore,positions[27].resourceRarityScore]
+    positions[17].neighbors=[positions[5].resourceRarityScore,positions[10].resourceRarityScore,positions[12].resourceRarityScore,positions[21].resourceRarityScore,positions[23].resourceRarityScore,positions[28].resourceRarityScore]
+    positions[18].neighbors=[positions[7].resourceRarityScore,positions[14].resourceRarityScore,positions[25].resourceRarityScore,positions[30].resourceRarityScore]
+    positions[19].neighbors=[positions[6].resourceRarityScore,positions[8].resourceRarityScore,positions[15].resourceRarityScore,positions[24].resourceRarityScore,positions[26].resourceRarityScore,positions[31].resourceRarityScore]
+    positions[20].neighbors=[positions[9].resourceRarityScore,positions[14].resourceRarityScore,positions[16].resourceRarityScore,positions[25].resourceRarityScore,positions[27].resourceRarityScore,positions[32].resourceRarityScore]
+    positions[21].neighbors=[positions[10].resourceRarityScore,positions[15].resourceRarityScore,positions[17].resourceRarityScore,positions[26].resourceRarityScore,positions[28].resourceRarityScore,positions[33].resourceRarityScore]
+    positions[22].neighbors=[positions[11].resourceRarityScore,positions[13].resourceRarityScore,positions[16].resourceRarityScore,positions[22].resourceRarityScore,positions[29].resourceRarityScore,positions[34].resourceRarityScore]
+    positions[23].neighbors=[positions[12].resourceRarityScore,positions[17].resourceRarityScore,positions[28].resourceRarityScore,positions[35].resourceRarityScore]
+    positions[24].neighbors=[positions[6].resourceRarityScore,positions[19].resourceRarityScore,positions[31].resourceRarityScore,positions[37].resourceRarityScore]
+    positions[25].neighbors=[positions[14].resourceRarityScore,positions[18].resourceRarityScore,positions[20].resourceRarityScore,positions[30].resourceRarityScore,positions[32].resourceRarityScore,positions[38].resourceRarityScore]
+    positions[26].neighbors=[positions[15].resourceRarityScore,positions[19].resourceRarityScore,positions[21].resourceRarityScore,positions[31].resourceRarityScore,positions[33].resourceRarityScore,positions[39].resourceRarityScore]
+    positions[27].neighbors=[positions[16].resourceRarityScore,positions[20].resourceRarityScore,positions[22].resourceRarityScore,positions[32].resourceRarityScore,positions[34].resourceRarityScore,positions[40].resourceRarityScore]
+    positions[28].neighbors=[positions[17].resourceRarityScore,positions[21].resourceRarityScore,positions[23].resourceRarityScore,positions[33].resourceRarityScore,positions[35].resourceRarityScore,positions[41].resourceRarityScore]
+    positions[29].neighbors=[positions[13].resourceRarityScore,positions[22].resourceRarityScore,positions[34].resourceRarityScore,positions[42].resourceRarityScore]
+    positions[30].neighbors=[positions[18].resourceRarityScore,positions[25].resourceRarityScore,positions[38].resourceRarityScore,positions[36].resourceRarityScore]
+    positions[31].neighbors=[positions[19].resourceRarityScore,positions[24].resourceRarityScore,positions[26].resourceRarityScore,positions[37].resourceRarityScore,positions[39].resourceRarityScore,positions[44].resourceRarityScore]
+    positions[32].neighbors=[positions[20].resourceRarityScore,positions[25].resourceRarityScore,positions[27].resourceRarityScore,positions[38].resourceRarityScore,positions[40].resourceRarityScore,positions[45].resourceRarityScore]
+    positions[33].neighbors=[positions[21].resourceRarityScore,positions[26].resourceRarityScore,positions[28].resourceRarityScore,positions[39].resourceRarityScore,positions[41].resourceRarityScore,positions[46].resourceRarityScore]
+    positions[34].neighbors=[positions[22].resourceRarityScore,positions[27].resourceRarityScore,positions[29].resourceRarityScore,positions[40].resourceRarityScore,positions[42].resourceRarityScore,positions[47].resourceRarityScore]
+    positions[35].neighbors=[positions[23].resourceRarityScore,positions[28].resourceRarityScore,positions[41].resourceRarityScore,positions[43].resourceRarityScore]
+    positions[36].neighbors=[positions[30].resourceRarityScore,positions[38].resourceRarityScore,positions[48].resourceRarityScore]
+    positions[37].neighbors=[positions[24].resourceRarityScore,positions[31].resourceRarityScore,positions[44].resourceRarityScore]
+    positions[38].neighbors=[positions[25].resourceRarityScore,positions[30].resourceRarityScore,positions[32].resourceRarityScore,positions[36].resourceRarityScore,positions[45].resourceRarityScore,positions[48].resourceRarityScore]
+    positions[39].neighbors=[positions[26].resourceRarityScore,positions[31].resourceRarityScore,positions[33].resourceRarityScore,positions[44].resourceRarityScore,positions[46].resourceRarityScore,positions[49].resourceRarityScore]
+    positions[40].neighbors=[positions[27].resourceRarityScore,positions[32].resourceRarityScore,positions[34].resourceRarityScore,positions[45].resourceRarityScore,positions[47].resourceRarityScore,positions[50].resourceRarityScore]
+    positions[41].neighbors=[positions[28].resourceRarityScore,positions[33].resourceRarityScore,positions[35].resourceRarityScore,positions[43].resourceRarityScore,positions[46].resourceRarityScore,positions[51].resourceRarityScore]
+    positions[42].neighbors=[positions[29].resourceRarityScore,positions[34].resourceRarityScore,positions[47].resourceRarityScore]
+    positions[43].neighbors=[positions[35].resourceRarityScore,positions[41].resourceRarityScore,positions[51].resourceRarityScore]
+    positions[44].neighbors=[positions[31].resourceRarityScore,positions[37].resourceRarityScore,positions[39].resourceRarityScore]
+    positions[45].neighbors=[positions[32].resourceRarityScore,positions[38].resourceRarityScore,positions[40].resourceRarityScore,positions[48].resourceRarityScore,positions[50].resourceRarityScore,positions[53].resourceRarityScore]
+    positions[46].neighbors=[positions[33].resourceRarityScore,positions[39].resourceRarityScore,positions[41].resourceRarityScore,positions[49].resourceRarityScore,positions[51].resourceRarityScore,positions[52].resourceRarityScore]
+    positions[47].neighbors=[positions[34].resourceRarityScore,positions[40].resourceRarityScore,positions[42].resourceRarityScore,positions[50].resourceRarityScore]
+    positions[48].neighbors=[positions[38].resourceRarityScore,positions[36].resourceRarityScore,positions[45].resourceRarityScore,positions[53].resourceRarityScore]
+    positions[49].neighbors=[positions[39].resourceRarityScore,positions[44].resourceRarityScore,positions[46].resourceRarityScore,positions[52].resourceRarityScore]
+    positions[50].neighbors=[positions[40].resourceRarityScore,positions[45].resourceRarityScore,positions[47].resourceRarityScore,positions[53].resourceRarityScore]
+    positions[51].neighbors=[positions[41].resourceRarityScore,positions[43].resourceRarityScore,positions[46].resourceRarityScore,positions[52].resourceRarityScore]
+    positions[52].neighbors=[positions[46].resourceRarityScore,positions[49].resourceRarityScore,positions[51].resourceRarityScore]
+    positions[53].neighbors=[positions[45].resourceRarityScore,positions[48].resourceRarityScore,positions[50].resourceRarityScore]
+}
+}
 }
