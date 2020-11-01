@@ -19,27 +19,24 @@ function main() {
     calculateResourcePlenty()
     calculateResourceRarity()
     declareNeighbors()
+    calculateNeighbors()
 
-    displayPositions()
-
-    // test_a = new Position("test_a",[t1,t2,t3])
-    // test_b = new Position("test_b",[t1,t2])
-    //test_a.tiles.push(t1, t2, t3)
-    //test_b.tiles.push(t1, t2)
-    // console.log(test_a)
-    // test_a.storeNeighborScores = test_b.storeNeighborScores
-    // console.log(test_a.storeNeighborScores)
-    // test_b.storeNeighborScores = [4,3]
-    // console.log(test_a.storeNeighborScores)
-    // console.log(test_a.tiles[0])
-    // console.log(test_a.tiles[0].value)
-    // console.log(getMaterialName(test_a.tiles[0].mat))
+    positions.sort(compareMax)
+    displayPositionNames()
 
 }
 
+//Displays every position object in its entirety
 function displayPositions() {
     for (i=0; i < positions.length; i++) {
         console.log(positions[i])
+    }
+}
+
+//Displays the current order of the position names
+function displayPositionNames() {
+    for (i=0; i < positions.length; i++) {
+        console.log(positions[i].displayName)
     }
 }
 
@@ -116,10 +113,10 @@ function getTotalDots(material) {
 }
 
 class Position {
-    constructor(name,tilesList) {
+    constructor(name,displayName,tilesList) {
         this.name = name
+        this.displayName = displayName
         this.tiles = tilesList
-        this.storeNeighborScoress = null
         this.maxCardScore =  null
         this.resourcePlentyScore = null
         this.resourceRarityScore = null
@@ -153,6 +150,7 @@ function calculateMaxCard() {
     }
 }
 
+//Applies the Resource Plenty Strategy
 function calculateResourcePlenty(){
     for (i=0; i < positions.length; i++) {
         var sum = 0;
@@ -164,6 +162,7 @@ function calculateResourcePlenty(){
     }
 }
 
+//Applies the Resource Rarity Strategy
 function calculateResourceRarity(){
     for (i=0; i < positions.length; i++) {
         var sum = 0;
@@ -175,70 +174,163 @@ function calculateResourceRarity(){
     }
 }
 
+//Applies the Neighbors and Best Neighbors Strategies
+function calculateNeighbors(){
+    for (i=0; i < positions.length; i++) {
+        var sum = 0;
+        var max = 0;
+        for (x=0; x < positions[i].neighbors.length; x++) {
+            if (positions[i].neighbors[x] > max) {
+                max = positions[i].neighbors[x]
+            }
+            sum += positions[i].neighbors[x]
+        }
+
+        //console.log("Sum of " + positions[i].name + " : " + sum)
+        //console.log("Max of " + positions[i].name + " : " + max)
+
+        //Calculate Neighbors Score
+        positions[i].neighborScore = positions[i].resourceRarityScore + (sum/2)
+        //console.log("Neighbor Score of " + positions[i].name + " : " + positions[i].neighborScore)
+
+        //Calculate Best Neighbor Score
+        positions[i].bestNeighborScore = positions[i].resourceRarityScore + (max/2)
+        //console.log("Best Neighbor Score of " + positions[i].name + " : " + positions[i].bestNeighborScore)
+    }
+}
+
+//Sorts positions according to Max Card Score
+function compareMax(a, b) {
+
+    const comp1 = a.maxCardScore;
+    const comp2 = b.maxCardScore;
+  
+    let comparison = 0;
+    if (comp1 < comp2) {
+      comparison = 1;
+    } else if (comp1 > comp2) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  //Sorts positions according to Resource Plenty Score
+  function comparePlenty(a, b) {
+
+    const comp1 = a.resourcePlentyScore;
+    const comp2 = b.resourcePlentyScore;
+  
+    let comparison = 0;
+    if (comp1 < comp2) {
+      comparison = 1;
+    } else if (comp1 > comp2) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  //Sorts positions according to Resource Rarity Score
+  function compareRarity(a, b) {
+
+    const comp1 = a.resourceRarityScore;
+    const comp2 = b.resourceRarityScore;
+  
+    let comparison = 0;
+    if (comp1 < comp2) {
+      comparison = 1;
+    } else if (comp1 > comp2) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  //Sorts positions according to Neighbors Score
+  function compareNeighbor(a, b) {
+
+    const comp1 = a.neighborScore;
+    const comp2 = b.neighborScore;
+  
+    let comparison = 0;
+    if (comp1 < comp2) {
+      comparison = 1;
+    } else if (comp1 > comp2) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  //Sorts positions according to Best Neighbor Score
+  function compareBestNeighbor(a, b) {
+
+    const comp1 = a.bestNeighborScore;
+    const comp2 = b.bestNeighborScore;
+  
+    let comparison = 0;
+    if (comp1 < comp2) {
+      comparison = 1;
+    } else if (comp1 > comp2) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
 //This function creates all of the possible settlement positions
 function declarePositions() {
     positions = [
-    new Position("u_a1",[t1]),
-    new Position("u_a2",[t1]),
-    new Position("u_b",[t2]),
-    new Position("u_c",[t1,t2]),
-    new Position("u_d",[t1,t4]),
-    new Position("u_e",[t4]),
-    new Position("u_f1",[t5]),
-    new Position("u_f2",[t5]),
-    new Position("u_g",[t2,t5]),
-    new Position("u_h",[t1,t2,t3]),
-    new Position("u_i",[t1,t3,t4]),
-    new Position("u_j",[t4,t9]),
-    new Position("u_k1",[t9]),
-    new Position("u_k2",[t9]),
-    new Position("u_l",[t2,t5,t6]),
-    new Position("u_m",[t2,t3,t6]),
-    new Position("u_n",[t3,t4,t8]),
-    new Position("u_o",[t4,t8,t9]),
-    new Position("u_p",[t5,t10]),
-    new Position("u_q",[t5,t6,t10]),
-    new Position("u_r",[t3,t6,t7]),
-    new Position("u_s",[t3,t7,t8]),
-    new Position("u_t",[t8,t9,t14]),
-    new Position("u_u",[t9,t14]),
-    new Position("u_v",[t10]),
-    new Position("u_w",[t6,t10,t11]),
-    new Position("u_x",[t6,t7,t11]),
-    new Position("u_y",[t7,t8,t13]),
-    new Position("u_z",[t8,t13,t14]),
-    new Position("l_a",[t14]),
-    new Position("l_b",[t10,t15]),
-    new Position("l_c",[t10,t11,t15]),
-    new Position("l_d",[t7,t11,t12]),
-    new Position("l_e",[t7,t12,t13]),
-    new Position("l_f",[t13,t14,t19]),
-    new Position("l_g",[t14,t19]),
-    new Position("l_h1",[t15]),
-    new Position("l_h2",[t15]),
-    new Position("l_i",[t11,t15,t16]),
-    new Position("l_j",[t11,t12,t16]),
-    new Position("l_k",[t12,t13,t18]),
-    new Position("l_l",[t13,t18,t19]),
-    new Position("l_m1",[t19]),
-    new Position("l_m2",[t19]),
-    new Position("l_n",[t15,t16]),
-    new Position("l_o",[t12,t16,t17]),
-    new Position("l_p",[t12,t17,t18]),
-    new Position("l_q",[t18,t19]),
-    new Position("l_r",[t16]),
-    new Position("l_s",[t16,t17]),
-    new Position("l_t",[t17,t18]),
-    new Position("l_u",[t18]),
-    new Position("l_v1",[t17]),
-    new Position("l_v2",[t17])]
-
-    // console.log(positions)
-    // console.log(positions[0])
-    // positions[0].tiles[0] = t3
-    // console.log(positions[0].tiles[0])
-    // console.log(positions[0].tiles[0].value)
-    // console.log(getMaterialName(positions[0].tiles[0].mat))
+    new Position("u_a1","A1",[t1]),
+    new Position("u_a2","A2",[t1]),
+    new Position("u_b","B",[t2]),
+    new Position("u_c","C",[t1,t2]),
+    new Position("u_d","D",[t1,t4]),
+    new Position("u_e","E",[t4]),
+    new Position("u_f1","F1",[t5]),
+    new Position("u_f2","F2",[t5]),
+    new Position("u_g","G",[t2,t5]),
+    new Position("u_h","H",[t1,t2,t3]),
+    new Position("u_i","I",[t1,t3,t4]),
+    new Position("u_j","J",[t4,t9]),
+    new Position("u_k1","K1",[t9]),
+    new Position("u_k2","K2",[t9]),
+    new Position("u_l","L",[t2,t5,t6]),
+    new Position("u_m","M",[t2,t3,t6]),
+    new Position("u_n","N",[t3,t4,t8]),
+    new Position("u_o","O",[t4,t8,t9]),
+    new Position("u_p","P",[t5,t10]),
+    new Position("u_q","Q",[t5,t6,t10]),
+    new Position("u_r","R",[t3,t6,t7]),
+    new Position("u_s","S",[t3,t7,t8]),
+    new Position("u_t","T",[t8,t9,t14]),
+    new Position("u_u","U",[t9,t14]),
+    new Position("u_v","V",[t10]),
+    new Position("u_w","W",[t6,t10,t11]),
+    new Position("u_x","X",[t6,t7,t11]),
+    new Position("u_y","Y",[t7,t8,t13]),
+    new Position("u_z","Z",[t8,t13,t14]),
+    new Position("l_a","a",[t14]),
+    new Position("l_b","b",[t10,t15]),
+    new Position("l_c","c",[t10,t11,t15]),
+    new Position("l_d","d",[t7,t11,t12]),
+    new Position("l_e","e",[t7,t12,t13]),
+    new Position("l_f","f",[t13,t14,t19]),
+    new Position("l_g","g",[t14,t19]),
+    new Position("l_h1","h1",[t15]),
+    new Position("l_h2","h2",[t15]),
+    new Position("l_i","i",[t11,t15,t16]),
+    new Position("l_j","j",[t11,t12,t16]),
+    new Position("l_k","k",[t12,t13,t18]),
+    new Position("l_l","l",[t13,t18,t19]),
+    new Position("l_m1","m1",[t19]),
+    new Position("l_m2","m2",[t19]),
+    new Position("l_n","n",[t15,t16]),
+    new Position("l_o","o",[t12,t16,t17]),
+    new Position("l_p","p",[t12,t17,t18]),
+    new Position("l_q","q",[t18,t19]),
+    new Position("l_r","r",[t16]),
+    new Position("l_s","s",[t16,t17]),
+    new Position("l_t","t",[t17,t18]),
+    new Position("l_u","u",[t18]),
+    new Position("l_v1","v1",[t17]),
+    new Position("l_v2","v2",[t17])]
 }
 
 //0 = Brick
@@ -271,7 +363,6 @@ function declareTiles() {
 
 //This function adds settlement neighbors' scores to each position 
 function declareNeighbors() {
-    //Push neighbor's scores and then apply algorithm?
     positions[0].neighbors=[positions[2].resourceRarityScore,positions[9].resourceRarityScore,positions[4].resourceRarityScore]
     positions[1].neighbors=[positions[3].resourceRarityScore,positions[10].resourceRarityScore,positions[5].resourceRarityScore]
     positions[2].neighbors=[positions[0].resourceRarityScore,positions[7].resourceRarityScore,positions[9].resourceRarityScore,positions[14].resourceRarityScore]
@@ -326,6 +417,4 @@ function declareNeighbors() {
     positions[51].neighbors=[positions[41].resourceRarityScore,positions[43].resourceRarityScore,positions[46].resourceRarityScore,positions[52].resourceRarityScore]
     positions[52].neighbors=[positions[46].resourceRarityScore,positions[49].resourceRarityScore,positions[51].resourceRarityScore]
     positions[53].neighbors=[positions[45].resourceRarityScore,positions[48].resourceRarityScore,positions[50].resourceRarityScore]
-}
-}
 }
