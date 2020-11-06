@@ -27,6 +27,12 @@ function main() {
     displayConsoleResults()
 }
 
+submitForms = function(){
+    //document.getElementById("form1").value = "Johnny Bravo";
+    console.log(document.getElementById("form1").value);
+    console.log(document.getElementById("form2").value);
+}
+
 //Displays every position object in its entirety
 function displayPositions() {
     for (i=0; i < positions.length; i++) {
