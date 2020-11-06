@@ -16,9 +16,9 @@
   /* Top left text */
   .top-left {
     color: black;
-    position: absolute;
-    top: 100px;
-    left: 900px;
+    position: relative;
+    top: -750px;
+    left: 0px;
   }
   
   /* Top right text */
