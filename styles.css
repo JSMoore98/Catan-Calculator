@@ -36,5 +36,16 @@ img {
     top: 50%;
     left: 85%;
     transform: translate( -50%, -50% );
+}
 
+.n_input {
+    width: 75%;
+    height: auto;
+    font-size: 100%;
+}
+
+.m_input {
+    width: 82%;
+    height: auto;
+    font-size: 100%;
 }
