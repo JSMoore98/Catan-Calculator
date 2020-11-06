@@ -1,15 +1,17 @@
 function main() {
 
-    //Function to read in data + create tiles + track total material dots?
-
-    totalWoodDots = 14
-    totalOreDots = 10
-    totalWheatDots = 12
-    totalSheepDots = 10
-    totalBrickDots = 11
+    tilesList = null
+    positions = null
+    totalWoodDots = 0
+    totalOreDots = 0
+    totalWheatDots = 0
+    totalSheepDots = 0
+    totalBrickDots = 0
 
     //Initializes the Tiles and Positions
     declareTiles()
+    declareMaterialDotTotals()
+    calculateDotRarity()
     declarePositions()
 
     //Applies the first three strategies
@@ -85,6 +87,20 @@ function displayPositionNames() {
 
 //Displays the position ordering for each strategy in the console
 function displayConsoleResults() {
+
+    console.log("=== Material Dot Totals ===")
+    console.log("Wood Dot Totals: " + totalWoodDots)
+    console.log("Ore Dot Totals: " + totalOreDots)
+    console.log("Wheat Dot Totals: " + totalWheatDots)
+    console.log("Sheep Dot Totals: " + totalSheepDots)
+    console.log("Brick Dot Totals: " + totalBrickDots)
+
+    console.log("=== Positions List ===")
+    console.log(positions)
+
+    console.log("=== Tiles List ===")
+    console.log(tilesList)
+
     console.log("=== Max Card Strategy ===")
     positions.sort(compareMax)
     displayPositionNames()
@@ -200,7 +216,7 @@ class Tile {
         //Change from 36 if 6 player sized map
         this.dotProb = this.dot / 36
         this.dotWeight = this.dotProb * this.weight
-        this.dotRarity = this.dot / getTotalDots(this.mat)
+        // this.dotRarity = this.dot / getTotalDots(this.mat)
     }
 }
 
@@ -340,6 +356,52 @@ function compareBestNeighbor(a, b) {
     return comparison;
 }
 
+//This function calculates the total dots for each material
+function declareMaterialDotTotals() {
+
+    totalWoodDots = 0
+    totalOreDots = 0
+    totalWheatDots = 0
+    totalSheepDots = 0
+    totalBrickDots = 0
+
+    for (i = 0; i < tilesList.length; i++) {
+        var currentDot = getDots(tilesList[i].value)
+
+        if (tilesList[i].mat == 0) {
+            totalBrickDots += currentDot
+        }
+        else if (tilesList[i].mat == 1) {
+            totalWoodDots += currentDot
+        }
+        else if (tilesList[i].mat == 2) {
+            totalOreDots += currentDot
+        }
+        else if (tilesList[i].mat == 3) {
+            totalSheepDots += currentDot
+        }
+        else if (tilesList[i].mat == 4) {
+            totalWheatDots += currentDot
+        }
+        else if (tilesList[i].mat == 5) {
+            totalWheatDots += currentDot
+        }
+
+    }
+
+}
+
+function calculateDotRarity() {
+    for (i = 0; i < tilesList.length; i++) {
+        if (tilesList[i].mat == 6) {
+            tilesList[i].dotRarity = 0
+        }
+        else {
+            tilesList[i].dotRarity = tilesList[i].dot / getTotalDots(tilesList[i].mat)
+        }
+    }
+}
+
 //This function creates all of the possible settlement positions
 function declarePositions() {
     positions = [
@@ -427,25 +489,7 @@ function declareTiles() {
     t18 = new Tile(parseInt(document.getElementById("t18n").value), parseInt(document.getElementById("t18m").value))
     t19 = new Tile(parseInt(document.getElementById("t19n").value), parseInt(document.getElementById("t19m").value))
 
-    console.log(t1)
-    console.log(t2)
-    console.log(t3)
-    console.log(t4)
-    console.log(t5)
-    console.log(t6)
-    console.log(t7)
-    console.log(t8)
-    console.log(t9)
-    console.log(t10)
-    console.log(t11)
-    console.log(t12)
-    console.log(t13)
-    console.log(t14)
-    console.log(t15)
-    console.log(t16)
-    console.log(t17)
-    console.log(t18)
-    console.log(t19)
+    tilesList = [t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19]
 }
 
 //This function adds settlement neighbors' scores to each position
