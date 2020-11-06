@@ -1,11 +1,6 @@
 function main() {
 
-    //Function read in data + create tiles?
-    //Function Declare Points
-    //Functions for first 3 algorithm steps
-    //Function Declare Neighbors
-    //Functions for last 2 algorithm steps
-    //Function for Displaying Results
+    //Function to read in data + create tiles + track total material dots?
 
     totalWoodDots = 14
     totalOreDots = 10
@@ -13,17 +8,23 @@ function main() {
     totalSheepDots = 10
     totalBrickDots = 11
 
+    //Initializes the Tiles and Positions
     declareTiles()
     declarePositions()
+
+    //Applies the first three strategies
     calculateMaxCard()
     calculateResourcePlenty()
     calculateResourceRarity()
+
+    //Initializes neighbors
     declareNeighbors()
+
+    //Applies the two other strategies
     calculateNeighbors()
 
-    positions.sort(compareMax)
-    displayPositionNames()
-
+    //Outputs results
+    displayConsoleResults()
 }
 
 //Displays every position object in its entirety
@@ -38,6 +39,29 @@ function displayPositionNames() {
     for (i=0; i < positions.length; i++) {
         console.log(positions[i].displayName)
     }
+}
+
+//Displays the position ordering for each strategy in the console
+function displayConsoleResults() {
+    console.log("=== Max Card Strategy ===")
+    positions.sort(compareMax)
+    displayPositionNames()
+
+    console.log("=== Resource Plenty Strategy ===")
+    positions.sort(comparePlenty)
+    displayPositionNames()
+
+    console.log("=== Resource Rarity Strategy ===")
+    positions.sort(compareRarity)
+    displayPositionNames()
+
+    console.log("=== Neighbors Strategy ===")
+    positions.sort(compareNeighbor)
+    displayPositionNames()
+
+    console.log("=== Best Neighbor Strategy ===")
+    positions.sort(compareBestNeighbor)
+    displayPositionNames()
 }
 
 //This function returns the number of dots for a number
@@ -361,7 +385,7 @@ function declareTiles() {
     t19 = new Tile(11, 0)
 }
 
-//This function adds settlement neighbors' scores to each position 
+//This function adds settlement neighbors' scores to each position
 function declareNeighbors() {
     positions[0].neighbors=[positions[2].resourceRarityScore,positions[9].resourceRarityScore,positions[4].resourceRarityScore]
     positions[1].neighbors=[positions[3].resourceRarityScore,positions[10].resourceRarityScore,positions[5].resourceRarityScore]
