@@ -27,6 +27,7 @@ function main() {
 
     //Outputs results
     displayConsoleResults()
+    displayTableResults()
 }
 
 //Remove Later
@@ -120,6 +121,90 @@ function displayConsoleResults() {
     console.log("=== Best Neighbor Strategy ===")
     positions.sort(compareBestNeighbor)
     displayPositionNames()
+}
+
+function displayTableResults() {
+
+    maxCardsArray = []
+    maxCardsScore = []
+    resourcePlentyArray = []
+    resourcePlentyScore = []
+    resourceRarityArray = []
+    resourceRarityScore = []
+    neighborsArray = []
+    neighborsScore = []
+    bestNeighborsArray = []
+    bestNeighborsScore = []
+
+    positions.sort(compareMax)
+    for (i = 0; i < positions.length; i++) {
+        maxCardsArray.push((positions[i].displayName))
+        maxCardsScore.push((positions[i].maxCardScore.toFixed(3)))
+    }
+
+    positions.sort(comparePlenty)
+    for (i = 0; i < positions.length; i++) {
+        resourcePlentyArray.push((positions[i].displayName))
+        resourcePlentyScore.push((positions[i].resourcePlentyScore.toFixed(3)))
+    }
+
+    positions.sort(compareRarity)
+    for (i = 0; i < positions.length; i++) {
+        resourceRarityArray.push((positions[i].displayName))
+        resourceRarityScore.push((positions[i].resourceRarityScore.toFixed(3)))
+    }
+
+    positions.sort(compareNeighbor)
+    for (i = 0; i < positions.length; i++) {
+        neighborsArray.push((positions[i].displayName))
+        try {
+            neighborsScore.push((positions[i].neighborScore.toFixed(3)))
+        } catch (error) {
+            neighborsScore.push((positions[i].neighborScore))
+        }
+    }
+
+    positions.sort(compareBestNeighbor)
+    for (i = 0; i < positions.length; i++) {
+        bestNeighborsArray.push((positions[i].displayName))
+        try {
+            bestNeighborsScore.push((positions[i].bestNeighborScore.toFixed(3)))
+        } catch (error) {
+            bestNeighborsScore.push((positions[i].bestNeighborScore))
+        }
+    }
+
+    totalArray = [maxCardsArray, maxCardsScore, resourcePlentyArray, resourcePlentyScore, resourceRarityArray, 
+        resourceRarityScore, neighborsArray, neighborsScore, bestNeighborsArray, bestNeighborsScore]
+
+    createTableHTML(totalArray, "resultsTable")
+}
+
+//Creates the HTML Table
+function createTableHTML(myArray, tableId) {
+
+    var result = "";
+    result += "<tr>";
+
+    result += "<td>" + "Max Cards" + "</td>" + "<td>" + "Max Cards Scores" + "</td>" + "<td>" + "Resource Plenty" + "</td>" + "<td>" + 
+    "Resource Plenty Score" + "</td>" + "<td>" + "Resource Rarity" + "</td>" + "<td>" + "Resource Rarity Score" + "<td>" + "Neighbors" + 
+    "</td>" +  "<td>" + "Neighbors Score" + "</td>" + "<td>" + "Best Neighbors" + "</td>" + "<td>" + "Best Neighbors Score" + "</td>" ;
+    
+    result += "</tr>";
+
+    for (var i = 0; i < myArray[0].length; i++) {
+        result += "<tr>";
+
+        result += "<td>" + myArray[0][i] + "</td>" + "<td>" + myArray[1][i] + "</td>" + "<td>" + myArray[2][i] + "</td>" + 
+        "<td>" + myArray[3][i] + "</td>" + "<td>" + myArray[4][i] + "</td>" + "<td>" + myArray[5][i] + "</td>" + "<td>" + myArray[6][i] + 
+        "</td>" + "<td>" + myArray[7][i] + "</td>" + "<td>" + myArray[8][i] + "</td>" + "<td>" + myArray[9][i] + "</td>";
+
+        result += "</tr>";
+
+    }
+
+    document.getElementById(tableId).innerHTML += result
+
 }
 
 //This function returns the number of dots for a number
