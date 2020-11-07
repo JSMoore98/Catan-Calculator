@@ -15,6 +15,10 @@ text{
     font-size: 3em;
 }
 
+table {
+    font-size: 1.5em;
+}
+
 .center_text{
     color:black;
     position: relative;
