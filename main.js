@@ -1,14 +1,5 @@
 function main() {
 
-    //Resets Variables
-    tilesList = null
-    positions = null
-    totalWoodDots = 0
-    totalOreDots = 0
-    totalWheatDots = 0
-    totalSheepDots = 0
-    totalBrickDots = 0
-
     //Initializes the Tiles and Positions
     declareTiles()
     declareMaterialDotTotals()
@@ -26,48 +17,6 @@ function main() {
     //Applies the two other strategies
     calculateNeighbors()
 
-}
-
-//Remove Later
-submitForms = function () {
-    console.log(document.getElementById("t1n").value);
-    console.log(document.getElementById("t2n").value);
-    console.log(document.getElementById("t3n").value);
-    console.log(document.getElementById("t4n").value);
-    console.log(document.getElementById("t5n").value);
-    console.log(document.getElementById("t6n").value);
-    console.log(document.getElementById("t7n").value);
-    console.log(document.getElementById("t8n").value);
-    console.log(document.getElementById("t9n").value);
-    console.log(document.getElementById("t10n").value);
-    console.log(document.getElementById("t11n").value);
-    console.log(document.getElementById("t12n").value);
-    console.log(document.getElementById("t13n").value);
-    console.log(document.getElementById("t14n").value);
-    console.log(document.getElementById("t15n").value);
-    console.log(document.getElementById("t16n").value);
-    console.log(document.getElementById("t17n").value);
-    console.log(document.getElementById("t18n").value);
-    console.log(document.getElementById("t19n").value);
-    console.log(document.getElementById("t1m").value);
-    console.log(document.getElementById("t2m").value);
-    console.log(document.getElementById("t3m").value);
-    console.log(document.getElementById("t4m").value);
-    console.log(document.getElementById("t5m").value);
-    console.log(document.getElementById("t6m").value);
-    console.log(document.getElementById("t7m").value);
-    console.log(document.getElementById("t8m").value);
-    console.log(document.getElementById("t9m").value);
-    console.log(document.getElementById("t10m").value);
-    console.log(document.getElementById("t11m").value);
-    console.log(document.getElementById("t12m").value);
-    console.log(document.getElementById("t13m").value);
-    console.log(document.getElementById("t14m").value);
-    console.log(document.getElementById("t15m").value);
-    console.log(document.getElementById("t16m").value);
-    console.log(document.getElementById("t17m").value);
-    console.log(document.getElementById("t18m").value);
-    console.log(document.getElementById("t19m").value);
 }
 
 //Displays every position object in its entirety
@@ -285,7 +234,6 @@ function randomize() {
 
     for (i = 0; i < 19 ; i++) {
         var mat = matArray.pop()
-        console.log("mat: " + mat)
         if (mat == 6) {
             document.getElementById("t"+(i+1)+"m").value = mat
             document.getElementById("t"+(i+1)+"n").value = 0
@@ -313,6 +261,13 @@ function getDots(n) {
 
 //Returns the weight using mod 2. 0 result symbolizes 1/3, 1 result symbolizes 1/4
 function getWeight(mat) {
+
+    //if(buttonIsPressed) then set mat to 4
+    if(document.getElementById("wheatIncrease").checked && mat == 5) {
+        console.log("Checked")
+        mat = 4
+    }
+
     if (mat % 2 == 0) {
         return (1 / 3)
     }

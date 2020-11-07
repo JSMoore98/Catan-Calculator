@@ -28,6 +28,10 @@ table {
     height: auto;
 }
 
+.optional{
+    font-size: 1.5em;
+}
+
 .tile_text{
     font-weight: bold;
     font-size: 3em;
