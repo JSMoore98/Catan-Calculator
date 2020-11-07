@@ -1,5 +1,4 @@
-
-h1{
+h1 {
     font-size: 5em;
     text-align: center;
 }
@@ -10,8 +9,8 @@ img {
     height: auto;
 }
 
-text{
-    color:black;
+text {
+    color: black;
     font-size: 3em;
 }
 
@@ -26,8 +25,8 @@ table {
     margin-right: 1em;
 }
 
-.center_text{
-    color:black;
+.center_text {
+    color: black;
     position: relative;
     font-size: 3em;
     text-align: center;
@@ -35,11 +34,11 @@ table {
     height: auto;
 }
 
-.optional{
+.optional {
     font-size: 1.75em;
 }
 
-.tile_text{
+.tile_text {
     font-weight: bold;
     font-size: 3em;
     text-align: center;
@@ -74,131 +73,131 @@ table {
     position: absolute;
     top: 15%;
     left: 50%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t2 {
     position: absolute;
     top: 23%;
     left: 32.5%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t3 {
     position: absolute;
     top: 32.5%;
     left: 50%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t4 {
     position: absolute;
     top: 23%;
     left: 67%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t5 {
     position: absolute;
     top: 32.5%;
     left: 16%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t6 {
     position: absolute;
     top: 41%;
     left: 32.5%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t7 {
     position: absolute;
     top: 50.5%;
     left: 50%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t8 {
     position: absolute;
     top: 41%;
     left: 67%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t9 {
     position: absolute;
     top: 32%;
     left: 84.5%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t10 {
     position: absolute;
     top: 50.5%;
     left: 16%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t11 {
     position: absolute;
     top: 59%;
     left: 32.5%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t12 {
     position: absolute;
     top: 68%;
     left: 50%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t13 {
     position: absolute;
     top: 59%;
     left: 67%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t14 {
     position: absolute;
     top: 50%;
     left: 84.5%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t15 {
     position: absolute;
     top: 68.5%;
     left: 16%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t16 {
     position: absolute;
     top: 77%;
     left: 32.5%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t17 {
     position: absolute;
     top: 86%;
     left: 50%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t18 {
     position: absolute;
     top: 77%;
     left: 67%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
 
 .t19 {
     position: absolute;
     top: 66.5%;
     left: 84.5%;
-    transform: translate( -50%, -50% );
+    transform: translate( -50%, -50%);
 }
