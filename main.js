@@ -1,5 +1,6 @@
 function main() {
 
+    //Resets Variables
     tilesList = null
     positions = null
     totalWoodDots = 0
@@ -25,10 +26,6 @@ function main() {
     //Applies the two other strategies
     calculateNeighbors()
 
-    //Outputs results
-    //displayConsoleResults()
-    //basicDisplayTableResults()
-    //advancedDisplayTableResults()
 }
 
 //Remove Later
@@ -126,6 +123,7 @@ function displayConsoleResults() {
     displayPositionNames()
 }
 
+//Displays the HTML Table for Basic Output
 function basicDisplayTableResults() {
 
     main()
@@ -166,20 +164,20 @@ function basicDisplayTableResults() {
     createBasicTableHTML(totalArray, "resultsTable")
 }
 
-//Creates the HTML Table
+//Creates the HTML Table for Basic Output
 function createBasicTableHTML(myArray, tableId) {
 
     document.getElementById(tableId).innerHTML = ""
 
     var result = "";
     result += "<tr>";
-    result += "<td>" + "Max Cards" + "</td>" + "<td>" + "Resource Plenty" + "</td>" +
-        "<td>" + "Resource Rarity" + "</td>" + "<td>" + "Neighbors" + "</td>" + "<td>" + "Best Neighbors" + "</td>";
+    result += "<td>" + "<b>Max Cards</b>" + "</td>" + "<td>" + "<b>Resource Plenty</b>" + "</td>" +
+        "<td>" + "<b>Resource Rarity</b>" + "</td>" + "<td>" + "<b>Neighbors</b>" + "</td>" + "<td>" + "<b>Best Neighbors</b>" + "</td>";
     result += "</tr>";
     for (var i = 0; i < myArray[0].length; i++) {
         result += "<tr>";
-        result += "<td>" + myArray[0][i] + "</td>" + "<td>" + myArray[1][i] + "</td>" + "<td>" + myArray[2][i] + "</td>" +
-            "<td>" + myArray[3][i] + "</td>" + "<td>" + myArray[4][i] + "</td>";
+        result += "<td><b>" + myArray[0][i] + "</b></td>" + "<td><b>" + myArray[1][i] + "</b></td>" + "<td><b>" + myArray[2][i] + "</b></td>" +
+            "<td><b>" + myArray[3][i] + "</b></td>" + "<td><b>" + myArray[4][i] + "</b></td>";
         result += "</tr>";
 
     }
@@ -188,6 +186,7 @@ function createBasicTableHTML(myArray, tableId) {
 
 }
 
+//Displays the HTML Table for Advanced Output
 function advancedDisplayTableResults() {
 
     main()
@@ -247,7 +246,7 @@ function advancedDisplayTableResults() {
     createAdvancedTableHTML(totalArray, "resultsTable")
 }
 
-//Creates the HTML Table
+//Creates the HTML Table for Advanced Output
 function createAdvancedTableHTML(myArray, tableId) {
 
     document.getElementById(tableId).innerHTML = ""
@@ -255,24 +254,47 @@ function createAdvancedTableHTML(myArray, tableId) {
     var result = "";
     result += "<tr>";
 
-    result += "<td>" + "Max Cards" + "</td>" + "<td>" + "Max Cards Scores" + "</td>" + "<td>" + "Resource Plenty" + "</td>" + "<td>" +
-        "Resource Plenty Score" + "</td>" + "<td>" + "Resource Rarity" + "</td>" + "<td>" + "Resource Rarity Score" + "<td>" + "Neighbors" +
-        "</td>" + "<td>" + "Neighbors Score" + "</td>" + "<td>" + "Best Neighbors" + "</td>" + "<td>" + "Best Neighbors Score" + "</td>";
+    result += "<td>" + "<b>Max Cards</b>" + "</td>" + "<td>" + "<b>Max Cards Scores</b>" + "</td>" + "<td>" + "<b>Resource Plenty</b>" + "</td>" + "<td>" +
+        "<b>Resource Plenty Score</b>" + "</td>" + "<td>" + "<b>Resource Rarity</b>" + "</td>" + "<td>" + "<b>Resource Rarity Score</b>" + "<td>" + "<b>Neighbors</b>" +
+        "</td>" + "<td>" + "<b>Neighbors Score</b>" + "</td>" + "<td>" + "<b>Best Neighbors</b>" + "</td>" + "<td>" + "<b>Best Neighbors Score</b>" + "</td>";
 
     result += "</tr>";
 
     for (var i = 0; i < myArray[0].length; i++) {
         result += "<tr>";
 
-        result += "<td>" + myArray[0][i] + "</td>" + "<td>" + myArray[1][i] + "</td>" + "<td>" + myArray[2][i] + "</td>" +
-            "<td>" + myArray[3][i] + "</td>" + "<td>" + myArray[4][i] + "</td>" + "<td>" + myArray[5][i] + "</td>" + "<td>" + myArray[6][i] +
-            "</td>" + "<td>" + myArray[7][i] + "</td>" + "<td>" + myArray[8][i] + "</td>" + "<td>" + myArray[9][i] + "</td>";
+        result += "<td><b>" + myArray[0][i] + "</b></td>" + "<td>" + myArray[1][i] + "</td>" + "<td><b>" + myArray[2][i] + "</b></td>" +
+            "<td>" + myArray[3][i] + "</td>" + "<td><b>" + myArray[4][i] + "</b></td>" + "<td>" + myArray[5][i] + "</td>" + "<td><b>" + myArray[6][i] +
+            "</b></td>" + "<td>" + myArray[7][i] + "</td>" + "<td><b>" + myArray[8][i] + "</b></td>" + "<td>" + myArray[9][i] + "</td>";
 
         result += "</tr>";
 
     }
 
     document.getElementById(tableId).innerHTML += result
+
+}
+
+//Creates a randomized game board
+function randomize() {
+    var matArray = [0,0,0,1,1,1,1,2,2,2,3,3,3,3,5,5,5,5,6]
+    var numArray = [2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12]
+
+    shuffle(matArray);
+    shuffle(numArray);
+
+    for (i = 0; i < 19 ; i++) {
+        var mat = matArray.pop()
+        console.log("mat: " + mat)
+        if (mat == 6) {
+            document.getElementById("t"+(i+1)+"m").value = mat
+            document.getElementById("t"+(i+1)+"n").value = 0
+        }
+        else {
+            document.getElementById("t"+(i+1)+"m").value = mat
+            document.getElementById("t"+(i+1)+"n").value = numArray.pop()
+        }
+    }
 
 }
 
@@ -370,7 +392,6 @@ class Tile {
         //Change from 36 if 6 player sized map
         this.dotProb = this.dot / 36
         this.dotWeight = this.dotProb * this.weight
-        // this.dotRarity = this.dot / getTotalDots(this.mat)
     }
 }
 
@@ -382,7 +403,6 @@ function calculateMaxCard() {
             sum += positions[i].tiles[x].dotProb
         }
         positions[i].maxCardScore = sum
-        //console.log(positions[i].name + " = " + sum)
     }
 }
 
@@ -394,7 +414,6 @@ function calculateResourcePlenty() {
             sum += positions[i].tiles[x].dotWeight
         }
         positions[i].resourcePlentyScore = sum
-        //console.log(positions[i].name + " = " + sum)
     }
 }
 
@@ -406,7 +425,6 @@ function calculateResourceRarity() {
             sum += positions[i].tiles[x].dotRarity
         }
         positions[i].resourceRarityScore = sum
-        //console.log(positions[i].name + " = " + sum)
     }
 }
 
@@ -510,6 +528,26 @@ function compareBestNeighbor(a, b) {
     return comparison;
 }
 
+//Shuffles an array for the randomizer funtion
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
 //This function calculates the total dots for each material
 function declareMaterialDotTotals() {
 
@@ -545,6 +583,7 @@ function declareMaterialDotTotals() {
 
 }
 
+//Calculates the dot scores using the total material rarity scores
 function calculateDotRarity() {
     for (i = 0; i < tilesList.length; i++) {
         if (tilesList[i].mat == 6) {
