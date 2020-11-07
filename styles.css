@@ -19,6 +19,11 @@ table {
     font-size: 1.5em;
 }
 
+.button {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 .center_text{
     color:black;
     position: relative;
@@ -29,7 +34,7 @@ table {
 }
 
 .optional{
-    font-size: 1.5em;
+    font-size: 1.75em;
 }
 
 .tile_text{

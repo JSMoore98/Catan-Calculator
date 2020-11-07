@@ -7,11 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<h1>Catan Calculator</h1>
-<input type="button" value="Display Basic" onclick="basicDisplayTableResults()" />
-<input type="button" value="Display Advanced" onclick="advancedDisplayTableResults()" />
-<input type="button" value="Display Console" onclick="displayConsoleResults()" />
-<input type="button" value="Randomize" onclick="randomize()" />
+<h1>Settlers of Catan Initial Settlement Calculator</h1>
 
 <br>
 
@@ -259,12 +255,23 @@
 <div class="board_container">
     <div class="board_img">
         <label class="optional"> <b>Optional Adjustments:</b> </label> <br>
+        <input type="checkbox" id="ignoreDuplicates" name="ignoreDuplicates">
+        <label for="ignoreDuplicates" class="optional"> Avoid Duplicate Numbers</label> <br>
         <input type="checkbox" id="wheatIncrease" name="wheatIncrease">
         <label for="wheatIncrease" class="optional"> Increase Wheat Priority</label> <br>
-        <input type="checkbox" id="ignoreDuplicates" name="ignoreDuplicates">
-        <label for="ignoreDuplicates" class="optional"> Ignore Duplicates</label> <br>
         <input type="checkbox" id="reduceNeighbors" name="reduceNeighbors">
-        <label for="reduceNeighbors" class="optional"> Reduce Neighbors Weight </label> <br>
+        <label for="reduceNeighbors" class="optional"> Reduce Neighbor's Priority </label> <br>
+    </div>
+</div>
+
+<br>
+
+<div class="board_container">
+    <div class="board_img">
+        <input type="button" class = "button" value="Display Basic Results" onclick="basicDisplayTableResults()" />
+        <input type="button" class = "button" value="Display Advanced Results" onclick="advancedDisplayTableResults()" />
+        <input type="button" class = "button" value="Display Console Results" onclick="displayConsoleResults()" />
+        <input type="button" class = "button" value="Randomize Board" onclick="randomize()" />
     </div>
 </div>
 
