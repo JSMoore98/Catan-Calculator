@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
+<iframe src="./documentation.html"></iframe>
+<div class="help">
+    <button id="help-btn" onclick="toggleHelp()">❔</button>
+</div>
+
 <div class="board_container">
     <div class="board_img">
         <img src="assets/catan-logo.png" alt="">
@@ -17,7 +22,7 @@
 
 <div class="board_container">
     <div class="board_img">
-        <input type="button" class="button" value="Program Information" onclick="window.open('documentation.html')" />
+        <input type="button" class="button" value="Program Information" onclick="toggleHelp()" />
     </div>
 </div>
 
