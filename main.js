@@ -2,6 +2,7 @@ function main() {
 
     //Initializes the Tiles and Positions
     declareTiles()
+    verifyBoard()
     declareMaterialDotTotals()
     calculateDotRarity()
     declarePositions()
@@ -226,21 +227,23 @@ function createAdvancedTableHTML(myArray, tableId) {
 
 //Creates a randomized game board
 function randomize() {
-    var matArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 5, 5, 5, 5, 6]
-    var numArray = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12]
+    if (confirm("Are you sure you want to randomize the board? The current board set up will be erased.")) {
+        var matArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 5, 5, 5, 5, 6]
+        var numArray = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12]
 
-    shuffle(matArray);
-    shuffle(numArray);
+        shuffle(matArray);
+        shuffle(numArray);
 
-    for (i = 0; i < 19; i++) {
-        var mat = matArray.pop()
-        if (mat == 6) {
-            document.getElementById("t" + (i + 1) + "m").value = mat
-            document.getElementById("t" + (i + 1) + "n").value = 0
-        }
-        else {
-            document.getElementById("t" + (i + 1) + "m").value = mat
-            document.getElementById("t" + (i + 1) + "n").value = numArray.pop()
+        for (i = 0; i < 19; i++) {
+            var mat = matArray.pop()
+            if (mat == 6) {
+                document.getElementById("t" + (i + 1) + "m").value = mat
+                document.getElementById("t" + (i + 1) + "n").value = 0
+            }
+            else {
+                document.getElementById("t" + (i + 1) + "m").value = mat
+                document.getElementById("t" + (i + 1) + "n").value = numArray.pop()
+            }
         }
     }
 
@@ -352,7 +355,6 @@ class Tile {
 
 //Applies the Max Card Strategy
 function calculateMaxCard() {
-    console.log(positions)
     for (i = 0; i < positions.length; i++) {
         dups = []
 
@@ -665,6 +667,70 @@ function declareTiles() {
     t19 = new Tile(parseInt(document.getElementById("t19n").value), parseInt(document.getElementById("t19m").value))
 
     tilesList = [t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19]
+}
+
+//Checks if the board has the correct number of tiles and value chips
+function verifyBoard() {
+
+    var validDesert = true;
+    var validMats = true;
+    var validValues = true;
+    var warning = "WARNING: Your board is not set up in a valid way. The program will still run fine but parts of the algorithm may produce less accurate results, " +
+        "specifically the resource plenty score. The board's issue is: \n\n"
+
+    var goalMatArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 5, 5, 5, 5, 6]
+    var goalNumArray = [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12]
+
+    var tileMatArray = []
+    var tileNumArray = []
+
+    for (x = 0; x < tilesList.length; x++) {
+        tileMatArray.push(tilesList[x].mat)
+        tileNumArray.push(tilesList[x].value)
+
+        if (tilesList[x].mat == 6 && tilesList[x].value != 0) {
+            validDesert = false
+        }
+    }
+
+    validMats = arraysEqual(goalMatArray, tileMatArray)
+    validValues = arraysEqual(goalNumArray, tileNumArray)
+
+    if (!validMats) {
+        warning += "- The board does not contain the correct number of tile materials. See the help link for the correct number of each material \n"
+    }
+
+    if (!validValues) {
+        warning += "- The board does not contain the correct number of tile values. See the help link for the correct values for a board \n"
+    }
+
+    if (!validDesert) {
+        warning += "- Make sure deserts are given a value of 0 \n"
+    }
+
+    if (!validMats || !validValues || !validDesert) {
+        alert(warning)
+    }
+
+}
+
+//Checks if two arrays contain the same values
+function arraysEqual(_arr1, _arr2) {
+
+    if (!Array.isArray(_arr1) || !Array.isArray(_arr2) || _arr1.length !== _arr2.length)
+        return false;
+
+    var arr1 = _arr1.concat().sort();
+    var arr2 = _arr2.concat().sort();
+
+    for (var i = 0; i < arr1.length; i++) {
+
+        if (arr1[i] !== arr2[i])
+            return false;
+
+    }
+
+    return true;
 }
 
 //This function adds settlement neighbors' scores to each position
