@@ -227,7 +227,7 @@ function createAdvancedTableHTML(myArray, tableId) {
 
 //Creates a randomized game board
 function randomize() {
-    if (confirm("Are you sure you want to randomize the board? The current board set up will be erased.")) {
+    if (confirm("Are you sure you want to randomize the board? The current board will be erased.")) {
         var matArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 5, 5, 5, 5, 6]
         var numArray = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12]
 
