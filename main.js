@@ -226,21 +226,21 @@ function createAdvancedTableHTML(myArray, tableId) {
 
 //Creates a randomized game board
 function randomize() {
-    var matArray = [0,0,0,1,1,1,1,2,2,2,3,3,3,3,5,5,5,5,6]
-    var numArray = [2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12]
+    var matArray = [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 5, 5, 5, 5, 6]
+    var numArray = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12]
 
     shuffle(matArray);
     shuffle(numArray);
 
-    for (i = 0; i < 19 ; i++) {
+    for (i = 0; i < 19; i++) {
         var mat = matArray.pop()
         if (mat == 6) {
-            document.getElementById("t"+(i+1)+"m").value = mat
-            document.getElementById("t"+(i+1)+"n").value = 0
+            document.getElementById("t" + (i + 1) + "m").value = mat
+            document.getElementById("t" + (i + 1) + "n").value = 0
         }
         else {
-            document.getElementById("t"+(i+1)+"m").value = mat
-            document.getElementById("t"+(i+1)+"n").value = numArray.pop()
+            document.getElementById("t" + (i + 1) + "m").value = mat
+            document.getElementById("t" + (i + 1) + "n").value = numArray.pop()
         }
     }
 
@@ -263,7 +263,7 @@ function getDots(n) {
 function getWeight(mat) {
 
     //if(buttonIsPressed) then set mat to 4
-    if(document.getElementById("wheatIncrease").checked && mat == 5) {
+    if (document.getElementById("wheatIncrease").checked && mat == 5) {
         console.log("Checked")
         mat = 4
     }
@@ -352,12 +352,39 @@ class Tile {
 
 //Applies the Max Card Strategy
 function calculateMaxCard() {
+    console.log(positions)
     for (i = 0; i < positions.length; i++) {
+        dups = []
+
         var sum = 0;
+
         for (x = 0; x < positions[i].tiles.length; x++) {
-            sum += positions[i].tiles[x].dotProb
+
+            if (document.getElementById("ignoreDuplicates").checked) {
+
+                var dupsNum = 0
+
+                for (j = 0; j < dups.length; j++) {
+                    if (positions[i].tiles[x].value == dups[j]) {
+                        dupsNum++
+                    }
+                }
+
+                dups.push(positions[i].tiles[j].value)
+
+                if (dupsNum > 0) {
+                    sum += (positions[i].tiles[x].dotProb / 2)
+                }
+                else {
+                    sum += positions[i].tiles[x].dotProb
+                }
+            }
+            else {
+                sum += positions[i].tiles[x].dotProb
+            }
+
+            positions[i].maxCardScore = sum
         }
-        positions[i].maxCardScore = sum
     }
 }
 
@@ -395,16 +422,16 @@ function calculateNeighbors() {
             sum += positions[i].neighbors[x]
         }
 
-        //console.log("Sum of " + positions[i].name + " : " + sum)
-        //console.log("Max of " + positions[i].name + " : " + max)
-
         //Calculate Neighbors Score
-        positions[i].neighborScore = positions[i].resourceRarityScore + (sum / 2)
-        //console.log("Neighbor Score of " + positions[i].name + " : " + positions[i].neighborScore)
+        if (document.getElementById("reduceNeighbors").checked) {
+            positions[i].neighborScore = positions[i].resourceRarityScore + (sum / 4)
+        }
+        else {
+            positions[i].neighborScore = positions[i].resourceRarityScore + (sum / 2)
+        }
 
         //Calculate Best Neighbor Score
         positions[i].bestNeighborScore = positions[i].resourceRarityScore + (max / 2)
-        //console.log("Best Neighbor Score of " + positions[i].name + " : " + positions[i].bestNeighborScore)
     }
 }
 
