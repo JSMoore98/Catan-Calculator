@@ -39,7 +39,7 @@ function displayConsoleResults() {
 
     main()
 
-    console.log("=== Material Dot Totals ===")
+    console.log("=== Overall Material Rarity Totals ===")
     console.log("Wood Dot Totals: " + totalWoodDots)
     console.log("Ore Dot Totals: " + totalOreDots)
     console.log("Wheat Dot Totals: " + totalWheatDots)

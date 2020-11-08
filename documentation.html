@@ -1,287 +1,226 @@
 <html>
 
 <head>
-  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-  <title>Pseudocode Editor - Documentation</title>
-  <link rel="stylesheet" href="indexStyler.css" />
-  <link rel="stylesheet" href="docFormatStyler.css" />
+  <meta charset="UTF-8">
+  <title>Catan Calculator - Documentation</title>
+  <link rel="stylesheet" href="styles.css">
   <script src="main.js"></script>
 </head>
 
 <body>
-  
-  <div>
-    <h1 id="top"> <center> <b>Documentation</b> </center> </h1>
+
+  <div class="board_container">
+    <div class="board_img">
+      <img src="assets/catan-logo.png" alt="">
+    </div>
   </div>
 
-<hr>
+  <div>
+    <h2 id="top">
+      <center> <b>Documentation</b> </center>
+    </h2>
+  </div>
+
+  <div class="board_container">
+    <div class="board_img">
+      <input type="button" class="button" value="Back to Home" onclick="window.location.href='index.html';" />
+    </div>
+  </div>
+
+  <br>
+  <hr>
 
   <div TOC>
-    <h2> <center> <b>Table of Contents</b> </center> </h2>
-  
-    <h3><center>
-      <a href="#main">Main Method</a><br><br><br>
-      <a href="#datatypes">Data Types</a><br><br><br>
-      <a href="#variables">Variables</a><br><br><br>
-      <a href="#constants">Named Constants</a><br><br><br>
-      <a href="#arrays">Arrays</a><br><br><br>
-      <a href="#input/output">Input and Output</a><br><br><br>
-      <a href="#ifs">If Statements</a><br><br><br>
-      <a href="#selectcase">Select Case</a><br><br><br>
-      <a href="#loops">Loops</a><br><br><br>
-      <a href="#ex">Examples</a><br><br><br>
-    </center></h3>
+    <h2>
+      <center> <b>Table of Contents</b> </center>
+    </h2>
+
+    <center>
+      <a href="#about"><b>About the Program</b></a><br><br><br>
+      <a href="#howToUse"><b>How to Use the Program</b></a><br><br><br>
+      <a href="#readResults"><b>Reading the Results</b></a><br><br><br>
+      <a href="#calculations"><b>How the Calculations Work</b></a><br><br><br>
+    </center>
   </div TOC>
 
-  <div >
-    <br><br><h2 id="main">Main Method</h2>
-    <p>
-      <b>Each program must have a main method surrounding it:</b><br>
-      Module main()<br>
-      <i>&emsp;statement</i><br>
-      <i>&emsp;statement</i><br>
-      <i>&emsp;statement</i><br>
-      End Module<br>
-    </p>
-  </div>
-
-  <div >
-    <br><br><h2 id="datatypes">Data Types</h2>
-    <p>
-      <b>Integer</b><br>
-      <b>Real</b><br>
-      <b>String</b><br>
-      <b>Character</b><br>
-      <b>Boolean</b><br>
-    </p>
-  </div>
-
-  <div >
-    <br><h2 id="variables">Variables</h2>
-    <b>To declare a variable:</b><br>
-    Declare <i>DataType</i> VariableName<br>
-    <b>To set the value of a variable:</b><br>
-    Set <i>variableName</i> = <i>value</i><br>
-  </div>
-
-  <div >
-    <br><h2 id="constants">Named Constants</h2>
-    <b>To declare a named constant:</b><br>
-    Constant <i>DataType Name</i> = Value
-  </div>
-
-  <div >
-    <br><h2 id="arrays">Arrays</h2>
-    <b>To declare an array:</b><br>
-    Declare <i>DataType ArrayName[Size]</i><br>
-    <b>To set an array element:</b><br>
-    Set arr[<i>index</i>] = <i>value</i>
-  </div>
-
-  <div >
-    <br><h2 id="input/output">Input/Output</h2>
-    <b>To display output:</b><br>
-    Display <i>var</i><br>
-    Display "This text will be displayed as is"<br>
-    <br>To read input:
-    <br>Input <i>variableName</i>  
-  </div>
-
-  <div >
-    <br><h2 id="operators">Operators</h2>
-    <b>Arithmetic Operators:</b><br>
-    + , - , * , / , ^ , MOD<br>
-    <b>Relational Operators:</b><br>
-    == , < , > , <= , >= <br>
-    <b>Logical Operators:</b><br>
-    AND, OR, NOT<br>
-  </div>
-
-  <div >
-    <br><h2 id="ifs">If Statements</h2>
-    <b>To create an If-Then statement:</b><br>
-    If <i>condition</i> Then<br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    End If<br><br>
-    <b>To create an If-Then-Else statement:</b><br>
-    If <i>condition</i> Then<br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    Else<br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    End If<br><br>
-    <b>To create an If-Then-Else-If statement:</b><br>
-    If <i>condition</i> Then<br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    Else<br>
-    &emsp;If <i>condition</i> Then<br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;etc</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    &emsp;End If<br>
-    End If<br><br>
-  </div>
-
-  <div >
-    <br><h2 id="selectcase">Select Case</h2>
-    <b>To create a select case:</b><br>
-    Select <i>testExpression</i><br>
-    &emsp;Case <i>value_1</i><br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;etc</i><br>
-    &emsp;Case <i>value_2</i><br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;etc</i><br>
-    &emsp;Default<br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;statement</i><br>
-    <i>&emsp;&emsp;etc</i><br>
-    End Select<br>
-  </div>
-
-  <div >
-    <br><h2 id="loops">Loops</h2>
-    <b>To create a While loop:</b><br>
-    While <i>condition</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    End While<br><br>
-    <b>To create a Do-While loop:</b><br>
-    Do While <i>condition</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    End Do While <br><br>
-    <!-- <b>To create a Do-Until loop:</b><br>
-    Do<br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    Until <i>condition</i><br><br> -->
-    <b>To create a For loop:</b><br>
-    For <i>counterVariable = startingValue</i> To <i>maxValue</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    End For<br><br>
-
-    <b>To create a For loop with Different Increments:</b><br>
-    For <i>counterVariable = startingValue</i> To <i>maxValue</i> Step <i>incrementAmount</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;statement</i><br>
-    <i>&emsp;etc</i><br>
-    End For<br><br>
-
-    <i>Note: Count variables do not get deleted after the for loop completes in our Pseudocode</i>
-  </div>
+  <hr>
+  </hr>
 
   <div>
-    <h1 id="ex"> <center> <b>Examples</b> </center> </h1>
-  </div>
+    <center>
+      <br><br>
+      <h2 id="about">About the Program:</h2>
+      <p>
+        <b>Program Description:</b><br>
+        This program allows you to input a Settlers of Catan game board and it will calculate the best spots for a
+        player to place their initial settlements.
+        The calculations used are modified versions of the ones in the article
+        <a style="font-size: 1em;" href="https://www.tandfonline.com/doi/abs/10.4169/college.math.j.46.4.275"
+          target="_blank">"The
+          Settlers of Catan: Using Settlement Placement Strategies in the Probability Classroom"</a>.
+        <br><br>
 
-<hr>
+        <b>Git Hub Source Code:</b>
+        <a style="font-size: 1em;" href="https://github.com/JSMoore98/catan-calculator"
+          target="_blank">"https://github.com/JSMoore98/catan-calculator"</a>.
+        <br><br>
+
+        <b>Browser Note:</b><br>
+        Firefox currently has an issue where the input boxes are larger than they should be. Other browsers that were
+        tested display them at the correct size.
+        <br><br>
+      </p>
+  </div>
+  </center>
 
   <div>
-    <br><b>Example Program 0-1: Hello World</b><br><br>
-      Display "Hello world"<br><br><br>
+    <center>
+      <br><br>
+      <h2 id="howToUse">How to Use the Program</h2>
+      <p>
+        <b>Setting Up the Board:</b><br><br>
+        Each letter is a potential settlement location.<br><br>
+        There are 19 Tiles each with a number value input box and a material selection box.<br><br>
+        When creating the board, a valid game board should have:<br>
+        - <b>Materials:</b> 4 Tiles Each of: Wood, Wheat, Sheep | 3 Tiles Each of: Ore, Brick | 1 Tile of: Desert<br>
+        - <b>Values:</b> 1 Each of: (2,12), 2 Each of: (3,4,5,6,8,9,10,11)<br><br>
+        The desert should be given a number value of 0.<br><br>
 
-      <b>Example Program 0-2: Pay Calculating</b><br><br>
-      Display "Enter the number of hours the employee worked."<br><br>
-      Input hours<br><br>
-      Display "Enter the employee's hourly pay rate."<br><br>
-      Input payRate<br><br>
-      Set grossPay = hours * payRate<br><br>
-      Display "The employee's gross pay is $", grossPay<br><br><br>
-      
-      <b>Example Program 2-1: Display</b><br><br>
-      Display "Kate Austen"Display "Kate Austen"<br><br>
-      Display "1234 Walnut Street"<br><br>
-      Display "Asheville, NC 28899"<br><br>
-      Example Program 2-2: Input Age<br><br>
-      Display "What is your age?"<br><br>
-      Input age<br><br>
-      Display "Here is the value that you entered:"<br><br>
-      Display age<br><br><br>
-      
-      <b>Example Program 2-4: Self Info</b><br><br>
-      Display "Enter your name."<br><br>
-      Input name<br><br>
-      Display "Enter your age."<br><br>
-      Input age<br><br>
-      Display "Hello ", name<br><br>
-      Display "You are ", age, " years old."<br><br><br>
-      
-      <b>Example Program 2-6: Set  Dollars</b><br><br>
-      Set dollars = 2.75<br><br>
-      Display "I have ", dollars, " in my account."<br><br>
-      Set dollars = 99.95<br><br>
-      Display "But now I have ", dollars, " in my account!"<br><br><br>
-      
-      <b>Example Program 2-7: Set Price</b><br><br>
-      Set price = 100<br><br>
-      Set discount = 20<br><br>
-      Set sale = price - discount<br><br>
-      Display "The total cost is $", sale<br><br><br>
+        If the game board isn’t set up using a valid configuration, the program will give you a warning about it. The
+        program will still run fine, but some of the calculations may produce less accurate results, specifically the
+        Resource Plenty Score. The others will typically still be accurate. <br><br>
 
-      <b>Example Program 2-10: Test Score Average</b><br><br>
-      Display "Enter the first test score."<br><br>
-      Input test1<br><br>
-      Display "Enter the second test score."<br><br>
-      Input test2<br><br>
-      Display "Enter the third test score."<br><br>
-      Input test3<br><br>
-      Set average = (test1 + test2 + test3) / 3<br><br>
-      Display "The average score is ", average<br><br><br>
+        The Randomize Board button will give you a randomized board already in a valid configuration. <br><br>
 
-      <b>Example Program 2-12: Declaring Variable Types</b><br><br>
-      Declare Integer age<br><br>
-      Display "What is your age?"<br><br>
-      Input age<br><br>
-      Display "Here is the value that you entered:"<br><br>
-      Display age<br><br><br>
-      
-      <b>Example Program 2-14: Documentation</b><br><br>
-      // Declare the variables<br><br>
-      Declare Real fiveYears<br><br>
-      Declare Real sevenYears<br><br>
-      Declare Real tenYears<br><br>
-      // Create a constant for the yearly rise<br><br>
-      Constant Real YEARLY_RISE = 1.5<br><br>
-      // Display the amount of rise in five years<br><br>
-      Set fiveYears = YEARLY_RISE * 5<br><br>
-      Display "The ocean levels will rise ", fiveYears,<br><br>
-      " millimeters in five years."<br><br>
-      // Display the amount of rise in seven years<br><br>
-      Set sevenYears = YEARLY_RISE * 7<br><br>
-      Display "The ocean levels will rise ", sevenYears,<br><br>
-      " millimeters in seven years."<br><br>
-      // Display the amount of rise in ten years<br><br>
-      Set tenYears = YEARLY_RISE * 10<br><br>
-      Display "The ocean levels will rise ", tenYears,<br><br>
-      " millimeters in ten years."<br><br>
+        <b>Optional Adjustment Boxes:</b><br><br>
+        Avoid Duplicate Numbers: (Affects to Max Cards Score) Many players like to avoid duplicate numbers to maximize
+        the chance of drawing a card every turn. Turning this on reduces the weight of duplicate numbers on a settlement
+        location.<br><br>
+
+        Increase Wheat Priority: (Affects the Resource Plenty Score) Wheat is arguably the most valuable material in the
+        game. Turning this on increases the weight from 1/4 to 1/3, which increases its value a bit.<br><br>
+
+        Reduce Neighbor's Priority: (Affects the Neighbors Score) The Neighbors Score tends to undervalue the actual
+        settlement location and overvalue the neighbors, so turning this on reduces the weight of neighbors from 1/2 to
+        1/4, so the actual settlement location is given a higher value.<br><br>
+
+        For more specific details about how these adjustments change the results, see the "How the Calculations Work"
+        section below.<br><br>
+
+        <b>Display Buttons:</b><br><br>
+        Display Basic Results: Displays only the settlement rankings.<br><br>
+        Display Advance Results: Displays the settlement rankings along with the calculation’s total scores.<br><br>
+        Display Results in Console: Outputs the settlement rankings in the console, along with some extra stats, such as
+        the total rarity values of each material.<br><br>
+
+
+      </p>
   </div>
+  </center>
 
   <div>
-    <a href="#top"><h5><center>Back to Top</center></h5></a>
+    <center>
+      <br>
+      <h2 id="readResults">Reading the Results</h2>
+      <p>
+        There are five scores that the program generates, each with their own strengths and way of analyzing the
+        board.<br><br>
+
+        <b>Max Cards Score:</b> This calculates the probability of the expected number of cards each turn. Usually
+        players
+        trying to maximize this strategy dislike having duplicate values because it reduces the odds of having at least
+        one card each turn, so the Avoid Duplicate Numbers optional adjustment lowers the value of duplicates.<br><br>
+
+        <b>Resource Plenty Score:</b> This calculates the probability of drawing a card while multiplying that number by
+        the
+        weight of the material. Wood, Sheep, and Wheat have 4 tiles while Ore and Bricks only have 3 tiles on a board,
+        so those two materials are given a more valuable weight.<br><br>
+
+        <b>Resource Rarity Score:</b> This is a more advanced version of the Resource Plenty Score. Instead of just
+        having the
+        material weight based on the number of tiles they have, it calculates the actual dot number values on each of
+        those tiles to see which material is the most to least rare. The most rare materials are given a higher weight
+        and priority.<br><br>
+
+        <b>Neighbors Score:</b> This looks at the possible neighbors that could be expanded to from a settlement and
+        gives a
+        score based on the sum of all the neighbors.<br><br>
+
+        <b>Best Neighbors Score:</b> This only looks at the best neighbor out of all the possible neighbors and uses
+        that score
+        instead of summing up every neighbor. <br><br>
+        - Between the two neighbor scores, the Best Neighbors Score is riskier with a higher reward because there’s
+        usually only one really good neighbor. If it’s taken before a player can settle there, the rest might be bad.
+        The Neighbors Score is safer but with a lower reward, because there might not be a single settlement to expand
+        to that’s as good as the Best Neighbors Score, but the average will be higher so the player should have multiple
+        decent settlement options.<br><br>
+
+        <b>Which Score is the Best?</b>
+        There’s no objectively best score, but the Resource Rarity Score is the most robust and typically the most
+        useful, so it could be argued to be the best. The Neighbors and Best Neighbor Scores are also useful, because
+        having other good settlements to expand to as the game progresses is critical. Having a settlement with a high
+        Resource Rarity and Neighbors Score is probably going to be the best. But the most useful score also depends a
+        lot on the individual player and their strategy. A player who loves to trade would probably value the Max Card
+        Score more. Overall, looking at the information from all of the scores is the best way to strategize; they all
+        give very useful info.<br><br>
+
+      </p>
   </div>
+  </center>
 
   <div>
-    <a href="#top"><h5><center>Back to Top</center></h5></a>
+    <center>
+      <br>
+      <h2 id="calculations">How the Calculations Work</h2>
+      <p>
+        Here are the in depth calculations for each of the 5 scores. Note: “dots” are the number of dice combinations
+        that produce a given number. For example, a tile with the value 4 has 3 dots.<br><br>
+
+        <b>Max Cards Score: Σ(dots/36)</b><br><br>
+        - Sums up all of the dots of the tiles the settlement touches and divides by 36, which is the number of possible
+        dice combinations.<br><br>
+        - If the Avoid Duplicate Numbers optional adjustment is checked, each encountered duplicate’s dots are divided
+        by
+        2 to lower their value.<br><br>
+
+        <b>Resource Plenty Score: Σ(dots/36) * Weight</b><br><br>
+        - Weight is ¼ for Wood, Sheep, and Wheat because they have four tiles each on a board. Weight is ⅓ for Ore and
+        Bricks because they only have three tiles each, so they’re more rare.<br><br>
+        - If the Increase Wheat Priority optional adjustment is checked, Wheat is given a ⅓ weight instead to increase
+        its
+        value a bit.<br><br>
+
+        <b>Resource Rarity Score: Σ(dots/dots material total)</b><br><br>
+        - dotsMaterialTotal is the sum of all of the dots for each material. For example, if the Ore tiles are 5, 4, and
+        2, the dots are 4, 3, and 1, so the material total is 8. This gives higher weight to the rarer materials since
+        demand will be higher.<br><br>
+
+        <b>Neighbors Score: R (settlement) + ½ Σ R (settlement’s neighbors)</b><br><br>
+        - R (location) is the Resource Rarity Score of the settlement being evaluated. R (location’s neighbors) is the
+        Resource Rarity Score of one of the settlement’s neighbors, which is any settlement two spaces away. So it takes
+        the sum of all the neighbors’ Resource Rarity Scores and halves it because that score isn’t as important as the
+        actual settlement’s score.<br><br>
+        - Turning on the Reduce Neighbor’s Priority optional adjustment reduces the weight of the neighbors’ sum from
+        1/2
+        to 1/4, so the actual settlement location is given a higher value.<br><br>
+
+        <b>Best Neighbors Score: R (settlement) + ½ R (settlement’s best neighbor)</b><br><br>
+        - R (location) is the Resource Rarity Score of the settlement being evaluated. R (best neighbor) is only the
+        highest Resource Rarity Score out of all the neighbors instead of summing them all up. It’s then divided by
+        2.<br><br>
+      </p>
   </div>
+  </center>
+
+  <div>
+    <center>
+      <br>
+      <a href="#top">
+        <b>Back to Top</b>
+      </a>
+  </div>
+  </center>
+  <br>
 </body>
 
 </html>
-
-

@@ -3,6 +3,15 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+a {
+    font-size: 1.5em;
+}
+
 img {
     display: block;
     width: 100%;
@@ -62,6 +71,17 @@ table {
     text-align: right;
     width: 100%;
     height: auto;
+}
+
+.small{
+    font-size: 1.5em;
+}
+
+p {
+    word-wrap: break-word;
+    font-size: 1.5em;
+    width:75%;
+    text-align: justify;
 }
 
 .n_input {
