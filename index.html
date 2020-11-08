@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
+<div class="help">
+    <button id="help-btn" onclick="toggleHelp()">❔</button>
+</div>
+
+<iframe src="./documentation.html"></iframe>
+
 <div class="board_container">
     <div class="board_img">
         <img src="assets/catan-logo.png" alt="">
@@ -15,8 +21,14 @@
 
 <h1>Settlement Calculator</h1>
 
-<br>
+<div class="board_container">
+    <div class="board_img">
+        <input type="button" class="button" value="Program Information" onclick="toggleHelp()" />
+    </div>
+</div>
 
+<br>
+<hr>
 <br>
 
 <div class="board_container">

@@ -249,6 +249,19 @@ function randomize() {
 
 }
 
+function toggleHelp() {
+    var help = document.querySelector("iframe");
+    var question = document.querySelector("#help-btn");
+    if (help.classList.contains("show")) {
+        help.classList.remove("show");
+        question.classList.remove("show");
+    }
+    else {
+        help.classList.add("show");
+        question.classList.add("show");
+    }
+}
+
 //This function returns the number of dots for a number
 function getDots(n) {
     if (n == 0) {
